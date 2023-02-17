@@ -1,0 +1,62 @@
+React
+Browser should be Chrome
+
+computer (cmd)
+install
+-npm install -g create-react-app
+check version
+-create-react-app --version
+
+Project
+-open folder
+-npx create-react-app [name]
+-จะได้ Folder มาข้างในอีกอันนึง นี่คือ project
+
+-openfolder อีกครี้ง ที่ Project
+-npm start
+-go http://localhost:3000  
+go src > App.js คือหน้าเวป
+-delete all 
+-rcc[]
+
+***ถ้าตัวแปลใน State เปลี่ยน จะส่งผลให้ Render() ถูกเรียกอีกครั้ง
+
+
+Install ตัว create-react-component-folder
+พิมพ์ว่า : npm i create-react-component-folder
+=========================================================================================
+Create folder ‘components’
+เปลี่ยน Target folder terminal 
+พิมพ์ว่า : cd src\components
+
+Create component ‘home’
+พิมพ์ว่า : npx crcf home
+
+กลับไปที่ project
+npm i react-router-dom
+
+=========================================================================================
+
+*==*
+>>create folder ใน component
+cd src\components
+npx crcf home
+
+>> สร้าง path ใน App.js
+import Home from "./components/home/home.js";
+<Route path="/register" component={Register} />
+
+contance > contance.js 
+เปลี่ยน api URL
+เปลี่ยน APP_TITLE
+เพิ่ม export const server
+
+src > action 
+ทำ Action
+=========================================================================================
+deploy
+npm run build
+> got folder "Build"
+> copy folder "Build" to serve
+>> set IIS
+> replace "Web Config"
