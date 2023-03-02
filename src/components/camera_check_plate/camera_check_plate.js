@@ -36,6 +36,7 @@ class Camera_check_plate extends Component {
     });
     this.setState({ list_plate: all_data.data.result, list_5: data_5.data.result });
     // this.input_plate_id.focus();
+    // console.log( all_data.data.result);
   }
   renderTableRow = () => {
     try {
@@ -45,8 +46,8 @@ class Camera_check_plate extends Component {
           <tr>
             <td>{item.mfgdate}</td>
             <td>{item.time}</td>
-            <td>{item.emp_no}</td>
-            <td>{item.driver_name}</td>
+            {/* <td>{item.emp_no}</td>
+            <td>{item.driver_name}</td> */}
             <td>{item.plate_id}</td>
             <td>{item.vender} </td>
             <td style={{ color: item.color }}>{item.camera_condition} </td>
@@ -293,8 +294,8 @@ class Camera_check_plate extends Component {
                   <thead>
                     <tr>
                       <th>วันที่</th> <th>เวลา</th>
-                      <th>รหัสพนักงาน</th>
-                      <th>ชื่อ</th>
+                      {/* <th>รหัสพนักงาน</th>
+                      <th>ชื่อ</th> */}
                       <th>ทะเบียนรถ</th>
                       <th>Vender</th>
                       <th>กล้อง</th>

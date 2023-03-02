@@ -70,7 +70,7 @@ class Camera_check extends Component {
         image: rfid_data.data.result.pic1.data,
         path_image: `rfid/picture/${rfid_data.data.result.emp_no}`,
       });
-      this.find_data2();
+      // this.find_data2();
     } else {
       let emp_data = await httpClient.post(server.RFID_EMP, { emp_no: my_rfid });
       if (emp_data.data.result !== "emp_no_not_found") {
@@ -84,7 +84,7 @@ class Camera_check extends Component {
           rfid: emp_data.data.result.rfid,
           path_image: `rfid/picture/${emp_data.data.result.emp_no}`,
         });
-        this.find_data2();
+        // this.find_data2();
       } else {
         Swal.fire({
           icon: "error",

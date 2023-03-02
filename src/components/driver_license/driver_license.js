@@ -23,9 +23,9 @@ class Driver_license extends Component {
       expire_driver: [],
       alert_driver: [],
       good_driver: [],
-      birth_date: moment().add(-0, "days").format("YYYY-MM-DD"),
+      // birth_date: moment().add(-0, "days").format("YYYY-MM-DD"),
       expire_date: moment().add(-0, "days").format("YYYY-MM-DD"),
-      read_only_birth_date: false,
+      // read_only_birth_date: false,
       read_only_expire_date: false,
       // list_vender: [],
       // rfid: "",
@@ -221,7 +221,7 @@ console.log("good_driver",good_data.data);
     const formData = new FormData();
     formData.append("emp_no", this.state.emp_no);
     formData.append("license_date", this.state.expire_date);
-    formData.append("birth_date", this.state.birth_date);
+    // formData.append("birth_date", this.state.birth_date);
 
     formData.append("pic1", this.state.selectedPic1);
     console.log(formData);
@@ -250,7 +250,7 @@ console.log("good_driver",good_data.data);
     const formData = new FormData();
     formData.append("emp_no", this.state.emp_no);
     formData.append("license_date", this.state.expire_date);
-    formData.append("birth_date", this.state.birth_date);
+    // formData.append("birth_date", this.state.birth_date);
 
     formData.append("pic1", this.state.selectedPic1);
     console.log(formData);
@@ -437,49 +437,9 @@ console.log("good_driver",good_data.data);
 
                   <br />
                   <div className="row">
-                    <div class="col-sm-12 col-md-4">
-                      <div className="custom-control custom-checkbox">
-                        <input
-                          className="custom-control-input"
-                          type="checkbox"
-                          id="customCheckbox1"
-                          defaultChecked
-                          onChange={async (e) => {
-                            if (e.target.checked) {
-                              this.setState({
-                                read_only_birth_date: false,
-                                birth_date: moment().format("YYYY-MM-DD"),
-                              });
-                            } else {
-                              this.setState({
-                                read_only_birth_date: true,
-                                birth_date: null,
-                              });
-                            }
-                          }}
-                        />
-                        <label htmlFor="customCheckbox1" className="custom-control-label">
-                          Birth Date
-                        </label>
-                      </div>
-
-                      <input
-                        class="form-control is-valid"
-                        type="date"
-                        id="id_daydate"
-                        readOnly={this.state.read_only_birth_date}
-                        name="name_daydate"
-                        value={this.state.birth_date}
-                        onChange={async (e) => {
-                          await this.setState({
-                            birth_date: moment(e.target.value).format("YYYY-MM-DD"),
-                          });
-                          // this.call_data();
-                        }}
-                      />
-                    </div>
+                  
                     <br />
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-6">
                       <div className="custom-control custom-checkbox">
                         <input
                           className="custom-control-input"
@@ -504,7 +464,9 @@ console.log("good_driver",good_data.data);
                           License Expire
                         </label>
                       </div>
+                      
                       <input
+                      style={{marginTop:5}}
                         class="form-control is-valid"
                         type="date"
                         id="id_daydate"
@@ -519,7 +481,7 @@ console.log("good_driver",good_data.data);
                         }}
                       />
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-6">
                       <label>License Picture</label>
                       <div className="custom-file">
                         <input

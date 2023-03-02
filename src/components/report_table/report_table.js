@@ -16,7 +16,7 @@ class Report_table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date_start: moment().add(-7, "days").format("YYYY-MM-DD"),
+      date_start: moment().add(-10, "days").format("YYYY-MM-DD"),
       date_end: moment().add(-0, "days").format("YYYY-MM-DD"),
       list_data: [],
       pivot_head: [],
@@ -57,7 +57,7 @@ class Report_table extends Component {
 
     const propertyKeys = Object.keys(this.state.pivot_excel[0]);
 
-    for (let j = 0; j < propertyKeys.length; j++) {
+    for (let j = 0; j < propertyKeys.length-1; j++) {
       this.state.pivot_head.push({ data1: propertyKeys[j] });
     }
 
@@ -128,11 +128,12 @@ class Report_table extends Component {
         const myResult = this.state.list_data;
         return myResult.map((item) => (
           <tr>
-            <td>{item.rfid}</td>
+            {/* <td>{item.rfid}</td>
             <td>{item.emp_no}</td>
-            <td>{item.driver_name}</td>
-            <td>{item.vender}</td>
+            <td>{item.driver_name}</td> */}
+
             <td>{item.plate_id}</td>
+            <td>{item.vender}</td>
             <td>{item.mfgdate}</td>
             <td>{item.time}</td>
             <td>{item.camera_condition}</td>
@@ -146,8 +147,15 @@ class Report_table extends Component {
                   Swal.fire({
                     title: "Camera Report : " + item.plate_id,
                     // text: "You are going to delete " + item.id,
-                    html:`
-                    <div classname="row">วันที่ ` +item.mfgdate +` /เวลา ` +item.time + `ทะเบียน ` +item.plate_id +`</div>
+                    html:
+                      `
+                    <div classname="row">วันที่ ` +
+                      item.mfgdate +
+                      ` /เวลา ` +
+                      item.time +
+                      `ทะเบียน ` +
+                      item.plate_id +
+                      `</div>
   
                     `,
                     icon: "info",
@@ -159,7 +167,7 @@ class Report_table extends Component {
                     if (result.isConfirmed) {
                       await httpClient.patch(server.CAMEAR_DEL, { id: item.id });
                       // window.location.reload(false);
-                      this.click_search()
+                      this.click_search();
                     }
                   });
                 }}
@@ -188,7 +196,7 @@ class Report_table extends Component {
           <div className="card card-secondary col-md-11">
             <div className="card-header"> </div>
             <div className="card-body">
-            <div className="row">
+              <div className="row">
                 <div class="col-sm-12 col-md-3">
                   <label>Date Start</label>
                   <input
@@ -222,7 +230,7 @@ class Report_table extends Component {
                   />
                 </div>
                 <div class="col-sm-12 col-md-2">
-                <label>&nbsp;</label>
+                  <label>&nbsp;</label>
                   <button
                     style={{ width: "100%" }}
                     type="submit"
@@ -236,7 +244,7 @@ class Report_table extends Component {
                   </button>
                 </div>
                 <div class="col-sm-2 col-md-2">
-                <label>&nbsp;</label>
+                  <label>&nbsp;</label>
                   <div style={{ width: "100%" }}>
                     <ExcelFile
                       element={<button className="btn btn-info btn-block float-right">Raw Report</button>}
@@ -244,19 +252,21 @@ class Report_table extends Component {
                       // fileExtension="XLSX"
                     >
                       <ExcelSheet data={this.state.list_data} name="Sheet1">
-                        <ExcelColumn label="rfid" value="rfid" />
+                        {/* <ExcelColumn label="rfid" value="rfid" />
                         <ExcelColumn label="emp_no" value="emp_no" />
-                        <ExcelColumn label="driver_name" value="driver_name" />
+                        <ExcelColumn label="driver_name" value="driver_name" /> */}
                         <ExcelColumn label="plate_id" value="plate_id" />
                         <ExcelColumn label="vender" value="vender" />
                         <ExcelColumn label="date" value="mfgdate" />
                         <ExcelColumn label="time" value="time" />
+                        <ExcelColumn label="camera_condition" value="camera_condition" />
+                        <ExcelColumn label="remark" value="remark" />
                       </ExcelSheet>
                     </ExcelFile>
                   </div>
                 </div>
                 <div class="col-xs-2 col-sm-2">
-                <label>&nbsp;</label>
+                  <label>&nbsp;</label>
                   <div
                   // style={{ width: "90%" }}
                   >
@@ -274,17 +284,17 @@ class Report_table extends Component {
               </div>
               <br />
               <div className="row">
-              
                 <div style={{ width: "100%" }}>
                   <div className="card-body table-responsive p-0" style={{ height: 400 }}>
                     <table id="DivTable" className="table table-head-fixed table-hover text-nowrap" role="grid" aria-describedby="example2_info">
                       <thead>
                         <tr>
-                          <th>RFID</th>
+                          {/* <th>RFID</th>
                           <th>รหัสพนักงาน</th>
-                          <th>ชื่อ-นามสกุล</th>
-                          <th>ผู้ประกอบการ</th>
+                          <th>ชื่อ-นามสกุล</th> */}
                           <th>ทะเบียนรถ</th>
+                          <th>ผู้ประกอบการ</th>
+
                           <th>Date</th>
                           <th>Time</th>
                           <th>Camera</th>

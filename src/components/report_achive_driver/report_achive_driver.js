@@ -22,12 +22,23 @@ class Report_achive_driver extends Component {
       vender: "All",
       date_start: moment().add(-0, "days").format("YYYY-MM-DD"),
       date_end: moment().add(-0, "days").format("YYYY-MM-DD"),
+
+      display_all_vender: "none",
+      display_1_vender: "none",
     };
   }
   async componentDidMount() {
+    // console.log("USER_LV", localStorage.getItem(key.USER_LV));
+    // console.log("USER_VENDER", localStorage.getItem(key.USER_VENDER));
     let vender_data = await httpClient.get(server.VENDER_ALL);
 
     this.setState({ list_vender: vender_data.data.result });
+
+    if (localStorage.getItem(key.USER_LV) == "Admin") {
+      this.setState({ vender: "All", display_all_vender: "", display_1_vender: "none" });
+    } else {
+      this.setState({ vender: localStorage.getItem(key.USER_VENDER), display_all_vender: "none", display_1_vender: "" });
+    }
   }
   renderTableRow_vender = () => {
     try {
@@ -83,14 +94,31 @@ class Report_achive_driver extends Component {
             width: "100%",
           }}
         >
-        
           <div className="card card-dark col-md-11">
             <div className="card-header">{/* <h3 className="card-title">Input Data</h3> */}</div>
             <div className="card-body">
               <div className="row">
-              <div class="col-sm-12 col-md-2">
+                <div class="col-sm-12 col-md-2">
                   <label>Vender</label>
                   <select
+                  style={{display:this.state.display_all_vender}}
+                    value={this.state.vender}
+                    className="form-control"
+                    onChange={async (e) => {
+                      e.preventDefault();
+                      await this.setState({
+                        vender: e.target.value,
+                      });
+                    }}
+                  >
+                    <option value="All" selected>
+                      All
+                    </option>
+                    {this.renderTableRow_vender()}
+                  </select>
+                  <select
+                    disabled
+                    style={{display:this.state.display_1_vender}}
                     value={this.state.vender}
                     className="form-control"
                     onChange={async (e) => {
@@ -176,7 +204,7 @@ class Report_achive_driver extends Component {
                   </ExcelFile>
                 </div>
               </div>
-  
+
               <br />
               <div>
                 <div className="card-body table-responsive p-0" style={{ height: 400 }}>

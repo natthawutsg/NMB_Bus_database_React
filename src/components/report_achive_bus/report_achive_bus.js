@@ -22,12 +22,20 @@ class Report_achive_bus extends Component {
       vender: "All",
       date_start: moment().add(-0, "days").format("YYYY-MM-DD"),
       date_end: moment().add(-0, "days").format("YYYY-MM-DD"),
+      display_all_vender: "none",
+      display_1_vender: "none",
     };
   }
   async componentDidMount() {
     let vender_data = await httpClient.get(server.VENDER_ALL);
 
     this.setState({ list_vender: vender_data.data.result });
+    
+    if (localStorage.getItem(key.USER_LV) == "Admin") {
+      this.setState({ vender: "All", display_all_vender: "", display_1_vender: "none" });
+    } else {
+      this.setState({ vender: localStorage.getItem(key.USER_VENDER), display_all_vender: "none", display_1_vender: "" });
+    }
   }
   renderTableRow_vender = () => {
     try {
@@ -90,6 +98,24 @@ class Report_achive_bus extends Component {
               <div class="col-sm-12 col-md-2">
                   <label>Vender</label>
                   <select
+                  style={{display:this.state.display_all_vender}}
+                    value={this.state.vender}
+                    className="form-control"
+                    onChange={async (e) => {
+                      e.preventDefault();
+                      await this.setState({
+                        vender: e.target.value,
+                      });
+                    }}
+                  >
+                    <option value="All" selected>
+                      All
+                    </option>
+                    {this.renderTableRow_vender()}
+                  </select>
+                  <select
+                    disabled
+                    style={{display:this.state.display_1_vender}}
                     value={this.state.vender}
                     className="form-control"
                     onChange={async (e) => {

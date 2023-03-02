@@ -155,7 +155,6 @@ class Header extends Component {
                   </a>
                 </div>
               </li>
-
               <li class="nav-item dropdown" style={{ display: this.state.SuperDisplay }}>
                 <a
                   class="nav-link dropdown-toggle"
@@ -196,8 +195,8 @@ class Header extends Component {
                   {/* <a class="dropdown-item" href="/bus_db">
                   Report
                 </a> */}
-                  <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
-                  <a class="dropdown-item" href="/ach_bus" style={{ display: this.state.AdminDisplay }}>
+                  <div class="dropdown-divider" style={{ display: this.state.SuperDisplay }}></div>
+                  <a class="dropdown-item" href="/ach_bus" style={{ display: this.state.SuperDisplay }}>
                     Bus History
                   </a>
                 </div>
@@ -227,8 +226,8 @@ class Header extends Component {
                   <a class="dropdown-item" href="/card_list">
                     Driver List
                   </a>
-                  <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
-                  <a class="dropdown-item" href="/ach_driver" style={{ display: this.state.AdminDisplay }}>
+                  <div class="dropdown-divider" style={{ display: this.state.SuperDisplay }}></div>
+                  <a class="dropdown-item" href="/ach_driver" style={{ display: this.state.SuperDisplay }}>
                     Driver History
                   </a>
                   <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
@@ -237,7 +236,6 @@ class Header extends Component {
                   </a>
                 </div>
               </li>
-
               <li class="nav-item dropdown" style={{ display: this.state.AdminDisplay }}>
                 <a
                   class="nav-link dropdown-toggle"
@@ -259,13 +257,50 @@ class Header extends Component {
                   <a class="dropdown-item" href="/listuser" style={{ display: this.state.AdminDisplay }}>
                     User
                   </a>
-
                   <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
                   <a class="dropdown-item" href="/master_opd" style={{ display: this.state.AdminDisplay }}>
                     OPD Category
                   </a>
+                  {/* <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
+                  <a class="dropdown-item" href="/master_shift" style={{ display: this.state.AdminDisplay }}>
+                    Shift
+                  </a> */}
+                  <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
+                  <a class="dropdown-item" href="/master_route" style={{ display: this.state.AdminDisplay }}>
+                    Route
+                  </a>
+                  <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
+                  <a class="dropdown-item" href="/master_payment" style={{ display: this.state.AdminDisplay }}>
+                  Payment
+                  </a>
                 </div>
               </li>
+              <li class="nav-item dropdown" style={{ display: this.state.AdminDisplay }}>
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Route Design
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/route_design" style={{ display: this.state.AdminDisplay }}>
+                    Input
+                  </a>
+                  <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
+                  <a class="dropdown-item" href="/listuser" style={{ display: this.state.AdminDisplay }}>
+                  Summary by Plate
+                  </a>
+                  
+                </div>
+              </li>
+
+             
             </ul>
             <div className="input-group-append"></div>
             <ul className="navbar-nav ml-auto"></ul>

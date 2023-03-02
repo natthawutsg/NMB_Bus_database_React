@@ -28,7 +28,7 @@ class Login extends Component {
   };
 
   componentDidMount() {
-    //this.props.autoLogin(this.props.history);
+   
     this.autoLogin();
   }
   handleKeyPress = (event) => {

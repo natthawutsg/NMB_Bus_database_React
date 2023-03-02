@@ -8,7 +8,7 @@ class Footer extends Component {
 
 
         <div className="float-right d-none d-sm-inline-block">
-          <b>Version</b> 20230215
+          <b>Version</b> 20230302
         </div>
       </footer>
     );

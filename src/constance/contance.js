@@ -25,6 +25,22 @@ export const server = {
   VENDER_IN: `vender/in`,
   VENDER_DEL: `vender/del`,
 
+  DATA_ROUTE_ALL: `data_route/all_qry`,
+  DATA_ROUTE_DEL: `data_route/del`,
+  DATA_ROUTE_IN: `data_route/in`,
+  DATA_ROUTE_COPY: `data_route/copy`,
+  DATA_ROUTE_DUP: `data_route/chk_dup`,
+
+  SHIFT_ALL: `shift/all`,
+  SHIFT_DUP: `shift/dup`,
+  SHIFT_IN: `shift/in`,
+  SHIFT_DEL: `shift/del`,
+
+  ROUTE_ALL: `route/all`,
+  ROUTE_DUP: `route/dup`,
+  ROUTE_IN: `route/in`,
+  ROUTE_DEL: `route/del`,
+
   RFID_RFID: `rfid/find_rfid`,
   RFID_EMP: `rfid/find_emp`,
   RFID_IN: `rfid/in_new`,

@@ -34,10 +34,12 @@ import Black_report from "./components/black_report/black_report";
 import OPD_INPUT from "./components/opd_input/opd_input";
 import OPD_REPORT from "./components/opd_report/opd_report";
 import BUS_DB from "./components/bus_db/bus_db";
-import BUS_REC from "./components/bus_db_record/bus_db_record";
+import ROUTE_DESIGN from "./components/route_design/route_design";
 
 import ACH_BUS from "./components/report_achive_bus/report_achive_bus";
 import ACH_DRIVER from "./components/report_achive_driver/report_achive_driver";
+import MASTER_ROUTE from "./components/master_route/master_route";
+import MASTER_PAYMENT from "./components/master_payment/master_payment";
 // const express= require('express');
 // const bodyParser= require('body-parser');
 // const app= express();
@@ -128,8 +130,10 @@ export default class App extends Component {
             <SecuredRoute path="/opd_input" component={OPD_INPUT} />
             <SecuredRoute path="/opd_report" component={OPD_REPORT} />
             <SecuredRoute path="/bus_db" component={BUS_DB} />
-            {/* <SecuredRoute path="/bus_rec" component={BUS_REC} /> */}
-
+        
+            <SecuredRoute path="/master_route" component={MASTER_ROUTE} />
+            <SecuredRoute path="/master_payment" component={MASTER_PAYMENT} />
+            <SecuredRoute path="/route_design" component={ROUTE_DESIGN} />
             <SecuredRoute path="/ach_bus" component={ACH_BUS} />
             <SecuredRoute path="/ach_driver" component={ACH_DRIVER} />
             {/* ถ้า return error ให้ไปที่ login */}
