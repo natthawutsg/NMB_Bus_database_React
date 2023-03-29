@@ -53,22 +53,11 @@ class Route_design extends Component {
     };
   }
   componentDidMount = async () => {
-    // const Array_obj = [
-    //   { id: 0, name: "David", pos: "A" },
-    //   { id: 1, name: "John", pos: "A" },
-    // ];
-    // var upd_obj = Array_obj.findIndex((obj) => obj.id == 0 && obj.pos == "B");
-    // console.log("Before Object Updation: ", Array_obj[upd_obj]);
-    // try {
-    //   Array_obj[upd_obj].name = "Harry";
-    // } catch (error) {}
-    // console.log("After Object Updation: ", Array_obj[upd_obj]);
-    // console.log(Array_obj);
-
     this.call_master_data();
   };
   call_master_data = async () => {
     let route_data = await httpClient.post(server.DATA_ROUTE_ALL, { date: this.state.date_data });
+    
     let bus_data = await httpClient.post(server.BUS_LIST_PLATE, {
       lv: localStorage.getItem(key.USER_LV),
       vender: localStorage.getItem(key.USER_VENDER),
@@ -76,7 +65,7 @@ class Route_design extends Component {
     ///////////////////////
     let list_route = await httpClient.get(server.ROUTE_ALL);
     this.setState({ show_table: route_data.data.result, list_plate: bus_data.data.result, list_route: list_route.data.result });
-    console.log(this.state.show_table);
+    // console.log(this.state.show_table);
 
     if (this.state.show_table.length === 0) {
       this.setState({ petrol: "0" });
@@ -89,6 +78,8 @@ class Route_design extends Component {
         break;
       }
     }
+ 
+
   };
   renderTableRow_input = () => {
     try {
@@ -426,8 +417,8 @@ class Route_design extends Component {
         });
       }
     }
-    // console.log(try_data);
-
+    console.log(try_data);
+return
     await httpClient.patch(server.DATA_ROUTE_DEL, { date: this.state.date_data });
     for (let j = 0; j < try_data.length; j++) {
       await httpClient.post(server.DATA_ROUTE_IN, try_data[j]);
@@ -492,7 +483,7 @@ class Route_design extends Component {
     console.log(new_data.data.result.length);
 
     if (new_data.data.result.length !== 0) {
-      Swal.fire({
+      await Swal.fire({
         icon: "error",
         title: "Data Duplicate",
         text: this.state.add_date + "  " + this.state.add_route + "  " + this.state.add_shift,
@@ -520,7 +511,7 @@ class Route_design extends Component {
         petrol: this.state.petrol,
       });
       console.log(insert_data.data);
-  
+
       //load
       await Swal.fire({
         title: "Insert Success",
@@ -530,6 +521,50 @@ class Route_design extends Component {
       });
       this.call_master_data();
     }
+  };
+  insert_blank = async () => {
+    Swal.fire({
+      title: "Confirm Insert blank data",
+      text: "on " + this.state.date_from,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes,",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        console.log(this.state.list_route);
+
+        for (let index = 0; index < this.state.list_route.length; index++) {
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "AM_in", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "A_out", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "B_in", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "B_out", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "CN_out", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "C_in", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "D_in", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "D_out", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "M_out", route: this.state.list_route[index].route,plate_id: "",});
+          await httpClient.post(server.DATA_ROUTE_IN, {mfgdate: this.state.date_from,petrol: this.state.petrol,shift: "N_in", route: this.state.list_route[index].route,plate_id: "",});
+        }
+
+        await Swal.fire({
+          title: "Insert Success",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        this.setState({
+          selected_route: "",
+          selected_plate_id_old: "",
+          selected_shift: "",
+          new_plate_id: "",
+          display_update_day: "none",
+          opacity_table: 1,
+        });
+        this.call_master_data();
+      }
+    });
   };
   render() {
     return (
@@ -567,7 +602,7 @@ class Route_design extends Component {
                     }}
                   />
                 </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+                {/* <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
                   <label>&nbsp;</label>
                   <button
                     style={{ width: "100%", zIndex: 0 }}
@@ -576,7 +611,7 @@ class Route_design extends Component {
                     onClick={async (e) => {
                       this.setState({
                         add_route: "",
-                        add_shift: "",
+
                         add_plate_id: "",
                         add_date: this.state.date_data,
                         display_newroute: "",
@@ -586,6 +621,19 @@ class Route_design extends Component {
                     }}
                   >
                     New Route
+                  </button>
+                </div> */}
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+                  <label>&nbsp;</label>
+                  <button
+                    style={{ width: "100%", zIndex: 0 }}
+                    type="submit"
+                    className="btn btn-success btn-block"
+                    onClick={async (e) => {
+                      this.insert_blank();
+                    }}
+                  >
+                    Get Route
                   </button>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-3 col-lg-4 "></div>

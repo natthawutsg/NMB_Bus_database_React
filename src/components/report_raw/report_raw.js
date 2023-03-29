@@ -28,6 +28,8 @@ class Report_raw extends Component {
   }
 
   click_search = async () => {
+    await this.setState({ list_data: [], pivot_data: [], pivot_head: [], pivot_excel: [], series: [], options: {}, test: "" });
+
     let xcel_data = await httpClient.post(server.REPORT_PIVOT_EXCEL, {
       date_start: this.state.date_start,
       date_end: this.state.date_end,
@@ -255,7 +257,7 @@ class Report_raw extends Component {
                   />
                 </div>
                 <div class="col-sm-12 col-md-2">
-                <label>&nbsp;</label>
+                  <label>&nbsp;</label>
                   <button
                     style={{ width: "100%" }}
                     type="submit"
@@ -269,7 +271,7 @@ class Report_raw extends Component {
                   </button>
                 </div>
                 <div class="col-sm-2 col-md-2">
-                <label>&nbsp;</label>
+                  <label>&nbsp;</label>
                   <div style={{ width: "100%" }}>
                     <ExcelFile
                       element={<button className="btn btn-info btn-block float-right">Raw Report</button>}
@@ -289,7 +291,7 @@ class Report_raw extends Component {
                   </div>
                 </div>
                 <div class="col-xs-2 col-sm-2">
-                <label>&nbsp;</label>
+                  <label>&nbsp;</label>
                   <div
                   // style={{ width: "90%" }}
                   >

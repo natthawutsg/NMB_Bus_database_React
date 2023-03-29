@@ -26,6 +26,7 @@ class Home extends Component {
       display_opd: "none",
       display_bus: "none",
       display_admin_tool: "none",
+      display_route_design: "none",
     };
   }
   async componentDidMount() {
@@ -41,7 +42,7 @@ class Home extends Component {
 
     switch (myCase) {
       case "Admin":
-        this.setState({ AdminDisplay: "", SuperDisplay: "", GuestDisplay: "", user_level: "Admin" });
+        this.setState({ AdminDisplay: "", SuperDisplay: "", GuestDisplay: "", user_level: "Admin" ,display_route_design:""});
         break;
       case "Super":
         this.setState({ AdminDisplay: "none", SuperDisplay: "", GuestDisplay: "", user_level: "Super" });
@@ -71,6 +72,7 @@ class Home extends Component {
       display_opd: "none",
       display_bus: "none",
       display_admin_tool: "none",
+      display_route_design: "none",
     });
   };
 
@@ -95,27 +97,7 @@ class Home extends Component {
                 </h3>
               </div>
               <div className="card-body">
-                <div id="accordion">
-                  {/* <div className="card card-primary">
-                    <div className="card-header">
-                      <h4 className="card-title w-100">
-                        <a className="d-block w-100" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
-                     
-                        Attendance
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseOne" className="collapse show" data-parent="#accordion" style={{}}>
-                   
-                      <div className="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                        cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a
-                        bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
-                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                        raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div> */}
+                <div id="accordion">                  
                   <div className="card card-secondary"   style={{ display: this.state.display_btn_out }}>
                     <div className="card-header">
                       <h4 className="card-title w-100">
@@ -246,6 +228,31 @@ class Home extends Component {
                   <div class="dropdown-divider" style={{ display: this.state.AdminDisplay }}></div>
                   <a class="dropdown-item" href="/black_list" style={{ display: this.state.AdminDisplay }}>
                     Black List
+                  </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="card card-secondary"  style={{ display: this.state.display_route_design }}>
+                    <div className="card-header">
+                      <h4 className="card-title w-100">
+                        <a className="d-block w-100 collapsed" data-toggle="collapse" href="#collapse7" aria-expanded="false">
+                          Route Design
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse7" className="collapse" data-parent="#accordion">
+                      <div className="card-body">
+                      <a class="dropdown-item" href="/route_design">
+                    Input
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/route_report_plate">
+                  Summary by Plate
+                  </a>
+
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/master_opd" >
+                    OPD Category
                   </a>
                       </div>
                     </div>

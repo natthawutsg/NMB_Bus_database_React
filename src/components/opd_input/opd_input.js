@@ -72,7 +72,7 @@ class Opd_input extends Component {
     let _data = await httpClient.post(server.BUS_FIND_VENDER, { plate_id: plate_id, });
    
     try {
-      console.log(_data.data.result[0].vender);
+      console.log(_data.data.result);
       this.setState({
         vender_name: _data.data.result[0].vender,
       });
@@ -141,18 +141,21 @@ class Opd_input extends Component {
     console.log(this.state.excel_data);
 
     for (let index = 1; index < this.state.excel_data.length; index++) {
-      // this.Click_Regist(
-      //   this.state.excel_data[index][0],
-      //   this.state.excel_data[index][1],
-      //   this.state.excel_data[index][2],
-      //   this.state.excel_data[index][3],
-      //   this.state.excel_data[index][4]
-      // );
+// var mydate = ''
+      // console.log(moment(this.state.excel_data[index][2]).add(-0, "days").format("YYYY"));
+      // if (moment(this.state.excel_data[index][2]).format("YYYY-MM-DD") < moment("2000-01-31").format("YYYY-MM-DD")) {
+      //   console.log("< 2000");
+      //   mydate = moment(this.state.excel_data[index][2]).add(543, "years").format("YYYY-MM-DD") 
+      // } else{
+      //   console.log("else");
+      //   mydate = moment(this.state.excel_data[index][2]).add(0, "years").format("YYYY-MM-DD") 
+      // }
+      // console.log(mydate);
       let input_data = await httpClient.post(server.OPD_RECORD_IN, {
         plate_id: this.state.excel_data[index][0],
         vender: this.state.excel_data[index][1],
 
-        mfgdate: this.state.excel_data[index][2],
+        mfgdate: moment(this.state.excel_data[index][2]).format("YYYY-MM-DD"),
         opd_category: this.state.excel_data[index][3],
         item: this.state.excel_data[index][4],
         price: this.state.excel_data[index][5],
@@ -161,6 +164,8 @@ class Opd_input extends Component {
         detail: this.state.excel_data[index][7],
         remark: this.state.excel_data[index][8],
       });
+
+      console.log(input_data);
       if (input_data.data.api_result !== "ok") {
         Swal.fire({
           icon: "error",
@@ -176,6 +181,7 @@ class Opd_input extends Component {
       icon: "success",
       title: "Please wait .....",
       showConfirmButton: false,
+      timer: 1000,
     });
   };
   render() {

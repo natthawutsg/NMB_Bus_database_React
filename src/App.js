@@ -34,8 +34,8 @@ import Black_report from "./components/black_report/black_report";
 import OPD_INPUT from "./components/opd_input/opd_input";
 import OPD_REPORT from "./components/opd_report/opd_report";
 import BUS_DB from "./components/bus_db/bus_db";
-import ROUTE_DESIGN from "./components/route_design/route_design";
-
+import ROUTE_REPORT_PLATE from "./components/report_route_plate/report_route_plate";
+import ROUTE_DESIGN2 from "./components/route_design2/route_design2";
 import ACH_BUS from "./components/report_achive_bus/report_achive_bus";
 import ACH_DRIVER from "./components/report_achive_driver/report_achive_driver";
 import MASTER_ROUTE from "./components/master_route/master_route";
@@ -133,7 +133,8 @@ export default class App extends Component {
         
             <SecuredRoute path="/master_route" component={MASTER_ROUTE} />
             <SecuredRoute path="/master_payment" component={MASTER_PAYMENT} />
-            <SecuredRoute path="/route_design" component={ROUTE_DESIGN} />
+            <SecuredRoute path="/route_design" component={ROUTE_DESIGN2} />
+            <SecuredRoute path="/route_report_plate" component={ROUTE_REPORT_PLATE} />
             <SecuredRoute path="/ach_bus" component={ACH_BUS} />
             <SecuredRoute path="/ach_driver" component={ACH_DRIVER} />
             {/* ถ้า return error ให้ไปที่ login */}

@@ -3,8 +3,8 @@ export const APP_INIT = "APP_INIT";
 export const APP_TITLE = "Driver Attendance";
 
 //////////////// Localization Begin ////////////////
-export const apiUrl = "http://115.178.63.42:1800/"; // <<<<< same back end  >>>>>>
-//export const apiUrl = "http://localhost:1800/"; // <<<<< same back end  >>>>>>
+// export const apiUrl = "http://115.178.63.42:1800/"; // <<<<< same back end  >>>>>>
+export const apiUrl = "https://www.thaibuspartner.com:1800/"; // <<<<< same back end  >>>>>>
 
 export const YES = "YES";
 export const NO = "NO";
@@ -30,6 +30,9 @@ export const server = {
   DATA_ROUTE_IN: `data_route/in`,
   DATA_ROUTE_COPY: `data_route/copy`,
   DATA_ROUTE_DUP: `data_route/chk_dup`,
+  DATA_ROUTE_CHANGE_PETROL: `data_route/change_petrol`,
+  DATA_ROUTE_CHANGE_PLATE: `data_route/change_plate`,
+  DATA_ROUTE_REPORT_PLATE: `data_route/report_plate`,
 
   SHIFT_ALL: `shift/all`,
   SHIFT_DUP: `shift/dup`,
@@ -98,7 +101,7 @@ export const server = {
   // BUS_FIND: `bus/find_plate`,
  
   BUS_FIND_DUP: `bus_text/find_plate_checkdup`,
-  // BUS_FIND_VENDER: `bus/find_vender_plate`,
+  BUS_FIND_VENDER: `bus/find_vender_plate`,
   // BUS_IN: `bus/in_new`,
   // BUS_UPLOAD: `bus/in`,
 
